@@ -20,14 +20,19 @@ public class Request {
 
         String[] requestLineParts = requestLine.split(" ");
         this.method = requestLineParts[0];
+        URI uri = URI.create(requestLineParts[1]);
 
         int indexSplit = requestLineParts[1].indexOf('?');
 
-        this.resourcePath = requestLineParts[1].substring(0, indexSplit);
-        // Format: ?**********
-        this.query = requestLineParts[1].substring(indexSplit+1, requestLineParts[1].length());
+        //this.resourcePath = requestLineParts[1].substring(0, indexSplit);
+        this.resourcePath = uri.getPath();
+
+
+        //this.query = requestLineParts[1].substring(indexSplit+1, requestLineParts[1].length());
+        this.query = uri.getQuery();
 
         this.queryParams = URLEncodedUtils.parse(URI.create(requestLineParts[1]), "UTF-8");
+
 
     }
 
@@ -40,6 +45,14 @@ public class Request {
                 .filter(p -> p.getName().equals(name))
                 .map(p -> p.getValue())
                 .findFirst().get();
+    }
+
+    public String getRequestLine() {
+        return requestLine;
+    }
+
+    public String getMethod() {
+        return method;
     }
 
     public String getResourcePath(){
