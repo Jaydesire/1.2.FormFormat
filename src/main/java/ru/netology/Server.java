@@ -107,8 +107,6 @@ public class Server {
             //Ищем параметры
             List<NameValuePair> queryParameters = URLEncodedUtils.parse(new URI(path), "UTF-8");
 
-            queryParameters.stream().forEach(System.out::println);
-
             // ищем заголовки
             final var headersDelimiter = new byte[]{'\r', '\n', '\r', '\n'};
             final var headersStart = requestLineEnd + requestLineDelimiter.length;
