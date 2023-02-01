@@ -37,17 +37,15 @@ public class Request {
 
     }
 
-    public List<NameValuePair> getQueryParams(){
+    public List<NameValuePair> getQueryParams() {
         return queryParams;
     }
 
-    public List<NameValuePair> getQueryParam(String name){
+    public List<NameValuePair> getQueryParam(String name) {
 
         return queryParams.stream()
                 .filter(p -> p.getName().equals(name))
                 .collect(Collectors.toList());
-
-
     }
 
     public String getRequestLine() {
@@ -58,10 +56,9 @@ public class Request {
         return method;
     }
 
-    public String getResourcePath(){
+    public String getResourcePath() {
         return resourcePath;
     }
-
 
 
     public String getQuery() {

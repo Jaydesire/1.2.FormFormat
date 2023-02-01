@@ -142,18 +142,18 @@ public class Server {
             }
 
             var methodMap = handlers.get(request.getMethod());
-            if(methodMap == null){
+            if (methodMap == null) {
                 System.out.println("404: methodMap == null");
                 return;
             }
 
             var handler = methodMap.get(request.getResourcePath());
-            if (handler == null){
+            if (handler == null) {
                 System.out.println("404: handler == null");
                 return;
             }
 
-            handler.handle(request,out);
+            handler.handle(request, out);
 
             out.write((
                     "HTTP/1.1 200 OK\r\n" +
@@ -199,7 +199,7 @@ public class Server {
         return -1;
     }
 
-    public static void addHandler(String method, String path, Handler handler){
+    public static void addHandler(String method, String path, Handler handler) {
         handlers.putIfAbsent(method, new ConcurrentHashMap<>());
 
         var methodMap = handlers.get(method);
